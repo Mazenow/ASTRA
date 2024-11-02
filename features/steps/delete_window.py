@@ -1,8 +1,8 @@
 from behave import step
 from selenium import webdriver
 from time import sleep
+import yaml
 
-from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -18,19 +18,25 @@ def step_impl(context, url):
 
 @step('Вводим в поле "Учётная запись или адрес эл. почты" текст "{login}"')
 def step_impl(context, login):
+    with open("config.yaml") as config_file:
+        config = yaml.safe_load(config_file)
+    context.login = config['login']
     xpath_login = "//*[@data-login-form-input-user]"
     login_pitch = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_login)),
                                                           message='Строка ввода логина отсутствует, либо не работает xpath_login')
-    login_pitch.send_keys(login)
+    login_pitch.send_keys(context.login)
     sleep(1)
 
 
 @step('Вводим в поле "Пароль" текст "{password}"')
 def step_impl(context, password):
+    with open("config.yaml") as config_file:
+        config = yaml.safe_load(config_file)
+        context.password = config['password']
     xpath_password = "//*[@data-login-form-input-password]"
     password_pitch = WebDriverWait(context.driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_password)),
                                                              message='Строка ввода логина отсутствует, либо не работает xpath_password')
-    password_pitch.send_keys(password)
+    password_pitch.send_keys(config['password'])
     sleep(1)
 
 
