@@ -1,8 +1,10 @@
-from subprocess import Popen, PIPE
 import os
 from allure_commons.types import AttachmentType
 import allure
 
+def before_all(context):
+    import os
+    os.environ["LANG"] = "ru_RU.UTF-8"
 
 def before_all(context):
     context.allure_results_path = 'allure-results'
