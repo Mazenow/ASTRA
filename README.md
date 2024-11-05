@@ -26,9 +26,6 @@ Allure: инструмент генерации отчетов о результ
 - html-testRunner               1.2.1
 - selenium                      4.25.0
 
-2) Создать дирректорию "C:\\Users\\Uncle_Faster\\Desktop\\ASTRA" 
-3) Создать и поместить в указанную директорию файлы "test_bmp.bmp" и "test_txt.txt"
-
 
 ## Установка
 
